@@ -60,7 +60,9 @@ public class Student {
         StringBuilder sb = new StringBuilder();
         for(Map.Entry<Lab,LabStatus> e : labMap.entrySet()){
             sb.append(String.format("%s > %s", e.getKey().getName(), e.getValue().toString()));
+            sb.append("\n");
         }
+        sb.setLength(sb.length() - 1);
         return sb.toString();
 
     }
