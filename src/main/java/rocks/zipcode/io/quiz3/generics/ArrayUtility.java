@@ -1,8 +1,11 @@
 package rocks.zipcode.io.quiz3.generics;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -50,9 +53,9 @@ public class ArrayUtility<SomeType> {
     //TODO comeback to complete
 
     public SomeType[] filter(Function<SomeType, Boolean> predicate) {
-        List<SomeType> list = Arrays.asList(array);
-        Stream<SomeType> stream = Arrays.stream(array).filter(st -> predicate.apply(st));
-        Stream<SomeType> stream2 = list.stream().filter(st -> predicate.apply(st));
-        return null;
+        List<SomeType> list = Arrays.stream(array).filter(st -> predicate.apply(st)).collect(Collectors.toList());
+        SomeType[] arr = (SomeType[]) Array.newInstance(array[0].getClass(),list.size());
+
+        return list.toArray(arr);
     }
 }
